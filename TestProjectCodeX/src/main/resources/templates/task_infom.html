@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+        .row.content {
+            height: 20px
+        }
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+    </style>
+    <title>Информация</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/project" class="active">Проекты</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Выйти из аккаунта</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <section>
+            <h3 class="sr-only">Task name:</h3>
+            <p class="task-name">Name: <span th:text="${task.name}">The name</span></p>
+        </section>
+        <section>
+            <h3 class="sr-only">Author:</h3>
+            <p class="task-author">Author: <span th:text="${task.getAuthor().username}">The author</span></p>
+        </section>
+        <section>
+            <h3 class="sr-only">Developer:</h3>
+            <p class="task-author">Developer: <span th:text="${developer}">The Developer</span>
+                <a href="book-show.html" th:href="@{'/task/' + ${id} + '/developer/'}"><span th:remove="tag" th:text="Назначить">The title</span></a> </p>
+        </section>
+        <section>
+            <h3 class="sr-only">Status:</h3>
+            <p class="task-author">Status: <span th:text="${task.status}">The Status</span>
+            <a href="book-show.html" th:href="@{'/task/' + ${id} + '/status/1'}"><span th:remove="tag" th:text="Waiting">The title</span></a>
+                <a href="book-show.html" th:href="@{'/task/' + ${id} + '/status/2'}"><span th:remove="tag" th:text="Implementation">The title</span></a>
+                <a href="book-show.html" th:href="@{'/task/' + ${id} + '/status/3'}"><span th:remove="tag" th:text="Verifying">The title</span></a>
+                <a href="book-show.html" th:href="@{'/task/' + ${id} + '/status/4'}"><span th:remove="tag" th:text="Releasing">The title</span></a></p>
+        </section>
+        <section>
+            <h3 class="sr-only">Info:</h3>
+            <p class="task-name">Info: <span th:text="${task.text}">The Info</span></p>
+        </section>
+        <h2>Comments:</h2>
+        <table border="0" cellpadding="5">
+            <tr th:each="comment, itr : ${comments}">
+                <th th:text="${comment.getAuthor().username + ': &nbsp'}"> The author</th>
+                <th th:text="${comment.getText()}">Comment</th>
+                <th><a href="book-show.html" th:href="@{'/task/' + ${id} + '/change/' + ${comment.id}}"><span th:remove="tag" th:text="Change">The title</span></a></th>
+                <th><a href="book-show.html" th:href="@{'/task/' + ${id} + '/change/' + ${comment.id} + '/delete'}"><span th:remove="tag" th:text="Delete">The title</span></a></th>
+            </tr>
+        </table><br/>
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <div class="col-sm-8 text-left">
+                    <form action="#" th:action="@{'/task/' + ${id} + '/create-comment'}" method="post">
+                        <div class="form-group">
+                            <label for="tx">New comment: </label>
+                            <input type="text" class="form-control" id="tx" name="commentText"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Отправить</button>
+                    </form>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>>

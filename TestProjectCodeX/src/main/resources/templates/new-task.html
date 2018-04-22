@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+        .row.content {
+            height: 20px
+        }
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+    </style>
+    <title>Новый таск</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/project" class="active">Проекты</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Выйти из аккаунта</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-8 text-left">
+            <form action="#" th:action="@{'/project/' + ${id} + '/add-task'}" method="post">
+                <h2><th th:text="${createnull}"/></h2>
+                <h2>Создание Task</h2>
+                <div class="form-group">
+                    <label for="usr">Название:</label>
+                    <input type="text" class="form-control" id="usr" name="taskn"/>
+                    <label for="usr">Описание:</label>
+                    <input type="text" class="form-control" id="text" name="text"/>
+                </div>
+                <button type="submit" class="btn btn-success">Создать</button>
+            </form>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

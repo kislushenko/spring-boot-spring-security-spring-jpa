@@ -1,0 +1,154 @@
+-- -- Table: users
+-- CREATE TABLE users (
+--   id       SERIAL          NOT NULL PRIMARY KEY,
+--   username VARCHAR(255) NOT NULL,
+--   password VARCHAR(255) NOT NULL
+-- );
+--
+--
+-- -- Table: roles
+-- CREATE TABLE roles (
+--   id   SERIAL          NOT NULL  PRIMARY KEY,
+--   name VARCHAR(100) NOT NULL
+-- );
+--
+--
+-- -- Table for mapping user and roles: user_roles
+-- CREATE TABLE user_roles (
+--   user_id INT NOT NULL,
+--   role_id INT NOT NULL,
+--
+--   FOREIGN KEY (user_id) REFERENCES users (id),
+--   FOREIGN KEY (role_id) REFERENCES roles (id),
+--
+--   UNIQUE (user_id, role_id)
+-- );
+--
+--
+-- INSERT INTO users VALUES (1, 'proselyte', '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG');
+--
+-- INSERT INTO roles VALUES (1, 'ROLE_USER');
+-- INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
+--
+-- INSERT INTO user_roles VALUES (1, 2);
+
+-- CREATE TABLE project(
+--   id SERIAL NOT NULL PRIMARY KEY ,
+--   name VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE TABLE task(
+--   id SERIAL NOT NULL PRIMARY KEY ,
+--   name VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE TABLE comment(
+--   id SERIAL NOT NULL PRIMARY KEY ,
+--   text VARCHAR(255)
+-- );
+--
+-- CREATE TABLE pr_manager(
+--   project_id INT NOT NULL,
+--   manager_id INT NOT NULL,
+--
+--   FOREIGN KEY (project_id) REFERENCES project (id),
+--   FOREIGN KEY (manager_id) REFERENCES users (id),
+--
+--   UNIQUE (project_id, manager_id)
+-- );
+--
+--  CREATE TABLE pr_developer(
+--     project_id INT NOT NULL ,
+--     developer_id INT NOT NULL,
+--
+--     FOREIGN KEY (project_id) REFERENCES project (id),
+--     FOREIGN KEY (developer_id) REFERENCES users (id),
+--
+--       UNIQUE (project_id, developer_id)
+--   );
+-- INSERT into roles values (3,'ROLE_ANONIM')
+--
+
+CREATE TABLE user_anonim(
+  id SERIAL NOT NULL PRIMARY KEY ,
+  name varchar(255) NOT NULL ,
+  code varchar(255) NOT NULL ,
+  role int not null
+)
+
+-- CREATE TABLE pr_task(
+--   project_id INT NOT NULL,
+--   task_id INT NOT NULL,
+--
+--   FOREIGN KEY (project_id) REFERENCES project (id),
+--   FOREIGN KEY (task_id) REFERENCES task (id),
+--
+--   UNIQUE (project_id, task_id)
+-- );
+--
+-- CREATE TABLE developer_task(
+--   developer_id INT NOT NULL,
+--   task_id INT NOT NULL,
+--
+--   FOREIGN KEY (developer_id) REFERENCES users (id),
+--   FOREIGN KEY (task_id) REFERENCES task (id),
+--
+--   UNIQUE (developer_id, task_id)
+-- );
+--
+-- CREATE TABLE comment_task(
+--   comment_id INT NOT NULL,
+--   task_id INT NOT NULL,
+--
+--   FOREIGN KEY (comment_id) REFERENCES comment (id),
+--   FOREIGN KEY (task_id) REFERENCES task (id),
+--
+--   UNIQUE (comment_id, task_id)
+-- );
+--
+-- CREATE TABLE comment_author(
+--   comment_id INT NOT NULL,
+--   author_id INT NOT NULL,
+--
+--   FOREIGN KEY (comment_id) REFERENCES comment (id),
+--   FOREIGN KEY (author_id) REFERENCES users (id),
+--
+--   UNIQUE (comment_id, author_id)
+-- -- );
+--   CREATE table task_author(
+--     task_id int not null ,
+--     author_id int not null ,
+--
+--     FOREIGN KEY (task_id) references task(id),
+--     foreign key (author_id) references users(id),
+--
+--     UNIQUE (task_id,author_id)
+--   );
+--
+-- INSERT into task_author values (1,6);
+-- INSERT into task_author values (2,6);
+-- INSERT into task_author values (3,7);
+-- insert into comment_task values (3,1);
+
+-- INSERT INTO comment VALUES (1, 'Come on SPRING!');
+-- --
+-- INSERT INTO comment_author VALUES (1, 6);
+
+-- INSERT into project values (1, 'Project 1');
+-- INSERT into project values (2, 'Project 2');
+-- INSERT into project values (3, 'Project 3');
+--
+-- INSERT INTO pr_manager VALUES (1, 6);
+-- INSERT INTO pr_manager VALUES (2, 6);
+
+-- INSERT into task values (1, 'Add figure', 'Wait');
+-- INSERT into task values (2, 'Add name', 'Wait');
+-- INSERT into task values (3, 'Add asd', 'Wait');
+--
+-- INSERT INTO pr_task VALUES (1, 1);
+-- INSERT INTO pr_task VALUES (2, 2);
+-- INSERT INTO pr_task VALUES (2, 3);
+-- INSERT INTO developer_task VALUES (6, 3);
+-- insert into pr_developer values (1,6);
+-- insert into pr_developer values (2,6);
+
